@@ -153,23 +153,15 @@ for kk=1:length(stdSensory)
     pthhGthChcw = pthhGthChcw./repmat(sum(pthhGthChcw,1),nth,1); % normalize - conv2 is not    
     pthhGthChccw = pthhGthChccw./repmat(sum(pthhGthChccw,1),nth,1);   
 
-    % calculate the weigth p(theta|Congruent);
-    pthGIndexcongruent = pCongruentGcwTh .* PChGtheta_lapse(1, :) + pCongruentGccwTh .* PChGtheta_lapse(2, :);
-    pthGIndexcongruent = pthGIndexcongruent / sum(pthGIndexcongruent);            
-    
-    
     pthhGthChcw = pthhGthChcw./repmat(sum(pthhGthChcw,1),nth,1); % normalize - conv2 is not    
     pthhGthChccw = pthhGthChccw./repmat(sum(pthhGthChccw,1),nth,1);        
     mthhGthChcw = th * pthhGthChcw;
     mthhGthChccw = th * pthhGthChccw;
 
     pthhGth = pthhGthChcw.*repmat(PChGtheta_lapse_new(1,:),nth,1) + pthhGthChccw.*repmat(PChGtheta_lapse_new(2,:),nth,1);
-    pthhAndth = pthhGth .* repmat(pthGIndexcongruent, nth, 1);
     
     %% plot
     showrange = [-21 21];
-    ind = find(thetaStim >= showrange(1) & thetaStim <= showrange(2));
-    nthshow = length(ind);
 
     subplot(3,3,1);
     plot(thetaStim,PChGtheta_lapse(1,:),'r-');
@@ -184,7 +176,7 @@ for kk=1:length(stdSensory)
     set(gca, 'FontSize', fontSize)
     
     subplot(3,3,2+(kk-1)*3);
-    pthhAndth = max(pthhAndth(:)) - pthhAndth;
+    pthhGth = max(pthhGth(:)) - pthhGth;
     xRange = [-22 22];
     indX = find(thetaStim >= xRange(1) & thetaStim <= xRange(2));
     xMax = length(indX);
@@ -194,7 +186,7 @@ for kk=1:length(stdSensory)
     thNew = th(indY);
     indYStart = find(thNew == xRange(1));
     indYEnd = find(thNew == xRange(2));
-    imagesc(pthhAndth(indY, indX));
+    imagesc(pthhGth(indY, indX));
     hold on;
     axis xy;
     colormap('gray');
@@ -210,7 +202,7 @@ for kk=1:length(stdSensory)
     
     
     ax=subplot(3,3,kk*3);
-    contour(pthhAndth(indY, indX),5);
+    contour(pthhGth(indY, indX),5);
     colormap(ax,'parula');
     hold on;
     axis xy;
