@@ -121,6 +121,7 @@ for kk=1:length(stdSensory)
         b = repmat(a',1,length(thetaStim)) .* pmmGth(:, ismember(th, thetaStim));   
     end
     pthhGthChcw = interp1(EthChcw,b,th,'linear','extrap');
+    pthhGthChcw(pthhGthChccw < 0) = 0; 
     % add motor noise
     pthhGthChcw = conv2(pthhGthChcw,pdf('norm',th,0,stdMotor)','same');
     pthhGthChcw(pthhGthChcw < 0) = 0; 
@@ -134,6 +135,7 @@ for kk=1:length(stdSensory)
         b = repmat(a',1,length(thetaStim)) .* pmmGth(:, ismember(th, thetaStim));
     end  
     pthhGthChccw = interp1(EthChccw,b,th,'linear','extrap');
+    pthhGthChccw(pthhGthChccw < 0) = 0; 
     % add motor noise
     pthhGthChccw = conv2(pthhGthChccw,pdf('norm',th,0,stdMotor)','same');
     pthhGthChccw(pthhGthChccw < 0) = 0; 
