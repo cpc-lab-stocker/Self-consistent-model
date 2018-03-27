@@ -91,8 +91,7 @@ for kk=1:length(stdSensory)
         PChGtheta_lapse(1, thetaStim < 0) = 0;
         PChGtheta_lapse(1, thetaStim == 0) = 0.5;
         PChGtheta_lapse(2, :) = 1 - PChGtheta_lapse(1, :);
-    end    
-    
+    end        
     % 2: estimation
     pmmGth = exp(-((MM_th-THmm).^2)./(2*(stdSensory(kk)^2 + stdMemory^2))); % p(mm|th) = N(th, sm^2 + smm^2)
     pmmGth = pmmGth./(repmat(sum(pmmGth,1),nmm,1)); 
@@ -121,7 +120,7 @@ for kk=1:length(stdSensory)
         b = repmat(a',1,length(thetaStim)) .* pmmGth(:, ismember(th, thetaStim));   
     end
     pthhGthChcw = interp1(EthChcw,b,th,'linear','extrap');
-    pthhGthChcw(pthhGthChccw < 0) = 0; 
+    pthhGthChcw(pthhGthChcw < 0) = 0; 
     % add motor noise
     pthhGthChcw = conv2(pthhGthChcw,pdf('norm',th,0,stdMotor)','same');
     pthhGthChcw(pthhGthChcw < 0) = 0; 
