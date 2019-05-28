@@ -1,7 +1,7 @@
 # SelfConsistentPerception
 Matlab code demonstrates the self-consistent Bayesian observer model for the three experiments in the following paper. 
-Luu, L., & Stocker, A. A. (2016). Choice-induced biases in perception. bioRxiv, 043224.
-https://www.biorxiv.org/content/early/2016/04/01/043224
+Long Luu and Alan A Stocker (2018). Post-decision biases reveal a selfconsistency principle in perceptual inference. ELife, 7:e33334.
+https://elifesciences.org/articles/33334
 
 For experiment 1 and 2, set flagDecisionGiven = 0.
 
