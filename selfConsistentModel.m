@@ -128,7 +128,8 @@ for kk=1:length(stdSensory)
     a = 1./gradient(EthChccw,dstep);
     if ~flagDecisionGiven
         % attention marginalization: compute distribution only over those ms that lead to ccw decision!
-        pmmGthChccw = pmmGm * (pmGth(:, ismember(th, thetaStim)).*repmat(PChGm(2,:)',1,length(thetaStim)));        
+        pmmGthChccw = pmmGm * (pmGth(:, ismember(th, thetaStim)).*repmat(PChGm(2,:)',1,length(thetaStim))); 
+        pmmGthChccw = pmmGthChccw ./ repmat(sum(pmmGthChccw,1),nmm,1);
         b = repmat(a',1,length(thetaStim)) .* pmmGthChccw;        
     else
         b = repmat(a',1,length(thetaStim)) .* pmmGth(:, ismember(th, thetaStim));
