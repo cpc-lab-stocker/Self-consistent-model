@@ -6,3 +6,5 @@ https://elifesciences.org/articles/33334
 For experiment 1 and 2, set flagDecisionGiven = 0.
 
 For experiment 3, set flagDecisionGiven = 1.
+
+The raw data for all experiments are Data_experiment1.txt, Data_experiment2.txt and Data_experiment3.txt.
